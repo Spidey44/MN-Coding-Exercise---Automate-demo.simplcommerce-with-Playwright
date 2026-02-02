@@ -1,4 +1,9 @@
-name: Playwright Tests
+name: Run Playwright tests
+      run: npx playwright test
+      env:
+        BASE_URL: ${{ secrets.BASE_URL }}
+        EMAIL_USER: ${{ secrets.EMAIL_USER }}
+        PASS_USER: ${{ secrets.PASS_USER }}
 on:
   push:
     branches: [ main, master ]
