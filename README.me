@@ -1,215 +1,117 @@
-🛒CODING ASSIGNMENT
+# 🛒 SimplCommerce E2E Automation Assignment
 
-End-to-end test automation suite for the **SimplCommerce Demo Store** using **Playwright (JavaScript)**.
+[![Playwright Tests](https://github.com/Spidey44/MN-Coding-Exercise---Automate-demo.simplcommerce-with-Playwright/actions/workflows/playwright.yml/badge.svg)](https://github.com/Spidey44/MN-Coding-Exercise---Automate-demo.simplcommerce-with-Playwright/actions)
+[![Playwright Version](https://img.shields.io/badge/Playwright-1.40+-2EAD33.svg)](https://playwright.dev/)
 
-This project contains a small set of smoke/regression tests focused on the main ecommerce flow:
-- Add to cart
-- Remove from cart
-- Update product quantity
-- Checkout with valid details
-- Checkout with missing/invalid details
+This project is a comprehensive end-to-end testing assignment designed to validate critical user journeys on the **SimplCommerce** demo e-commerce platform.
 
 ---
 
-## Tech Stack
+## 📋 Deliverables Overview
 
-- **Playwright**
-- **JavaScript (Node.js)**
-- **dotenv** (environment variables)
+As per the assignment requirements, this repository includes:
+
+### 1️⃣ Test Design Document
+*   **Identification**: Key test cases for cart management and checkout flows.
+*   **Prioritization**: Scenarios prioritized based on **Risk, Frequency, and Business Value**.
+*   **File**: [Download Test Plan (Simplcommerce.xlsx)](./Coding%20Testwares/Simplcommerce.xlsx)
+
+### 2️⃣ Automation Code (Playwright + JavaScript)
+Implemented robust automation for the following critical journeys:
+*   **Cart**: Adding/Removing products.
+*   **Data-Driven**: Updating product quantities across multiple products.
+*   **Checkout**: Successful flow with valid details.
+*   **Negative Testing**: Attempting checkout with missing/invalid details (address/payment).
+
+### 3️⃣ Test Execution Output
+*   Sample test run results with logs and screenshots.
+*   HTML reports generated after each execution.
+
+### 4️⃣ CI/CD Integration (Bonus)
+*   Full integration with **GitHub Actions** for automated regression testing.
 
 ---
 
-## Requirements
+## 🚀 Installation & Execution
 
-- **Node.js 18+**
-- npm
-
----
-
-## Installation
-
-Clone the repository and install dependencies:
+### 1. Setup
 
 ```bash
+# Clone and install
 git clone https://github.com/Spidey44/MN-Coding-Exercise---Automate-demo.simplcommerce-with-Playwright.git
 cd MN-Coding-Exercise---Automate-demo.simplcommerce-with-Playwright
 npm install
-```
+npx playwright install chromium
 
----
+### 2. Environment Configuration
 
-## Install Playwright browsers:
-```bash
-npx playwright install
-```
-
----
-
-## Environment Variables (.env)
-Create a .env file in the root of the project:
-```bash
-BASE_URL=https://example.com
+BASE_URL=https://demo.simplcommerce.com
 EMAIL_USER=your-email@example.com
 PASS_USER=your-password
-```
 
-Example:
+### 3. Test Suite Overview
 
-```bash
-BASE_URL=https://demo.simplcommerce.com
-EMAIL_USER=janedoe@test.com
-PASS_USER=Test123!
-```
-These credentials are used for login before checkout tests.
+The following tests are included as required by the assignment:
 
----
+Cart Management
+TC_CART_001: Adding a product to the cart.
+TC_CART_002: Removing a product from the cart.
+TC_CART_003: Updating product quantity (Data-Driven).
 
-## Running Tests
+Checkout Flow
+TC_CHECK_001: Proceeding to checkout with valid details.
+TC_CHECK_010: Attempting checkout with missing/invalid details (no address / invalid payment).
 
-Run all tests:
-```bash
-npx playwright test
-```
+### 4. Data-Driven Testing
 
-Run in headed mode (browser visible):
-```bash
-npx playwright test --headed
-```
+Tests are scaled using data arrays to validate multiple products without code duplication:
 
-Run a single test file:
-```bash
-npx playwright test tests/cart-add.spec.js
-```
-
-Run a specific test by name:
-```bash
-npx playwright test -g "Adding a product to the cart"
-```
-
----
-
-## Test Report
-After execution, open the HTML report:
-
-```bash
-npx playwright show-report
-```
-
-## 🧪 Test Suite Overview
-The following tests are included as required examples:
-
-### ✅ Cart
-- TC_CART_001 - Adding a product to the cart
-- TC_CART_002 - Removing a product from the cart
-- TC_CART_003 - Updating product quantity
-
-### ✅ Checkout
-- TC_CHECK_001 - Proceeding to checkout with valid details
-- TC_CHECK_010 - Attempting checkout with missing/invalid details (no address / invalid payment)
-
-## 🔁 Data-Driven Tests
-Some tests are implemented using a simple data-driven approach.
-Example structure:
-
-```js
-const cases = [
+const products = [
   { name: "iPhone 6s 16GB", url: "/iphone-6s-16gb", addClicks: 2 },
   { name: "Dell XPS 15 9550", url: "/dell-xps-15-9550", addClicks: 1 },
-  ...
 ];
 
-for (const c of cases) {
-  test(`[Product] Updating product quantity - ${c.name}`, async ({ page }) => {
-    await page.goto(c.url);
-    // ...
+for (const item of products) {
+  test(`Updating product quantity - ${item.name}`, async ({ page }) => {
+    // Test logic here
   });
 }
-```
 
-** This makes it easy to scale test coverage by simply adding new products/cases without duplicating logic.**
 
-## 🎯 Selector Strategy
-The test suite prioritizes readable selectors such as:
-- getByText(...) (UI-visible strings)
-- getByRole(...) (recommended by Playwright for stable interactive elements)
+### 5. Run Tests
 
-Example:
-```js
-const addCartBtn = page.getByRole("button", { name: "Add to cart" });
-await addCartBtn.click();
-```
+Run all the tests with: npx playwright test
+Run all the test with UI: npx playwright test --headed
+View HTML Execution Report: npx playwright show-report
 
-## Project Structure
-```bash
-tests/
-  smoke.spec.js
-  cart-add.spec.js
-  cart-remove.spec.js
-  checkout-valid-details.spec.js
-  checkout-invalid-details.spec.js
-  product-quantity.spec.js
-```
+### 6. CI/CD Pipeline
 
-## CI/CD Integration via YAML
+Tool: GitHub Actions (Ubuntu-latest).
+Triggers: Automated on push and pull_request.
+Security: Sensitive data handled via GitHub Secrets (BASE_URL, EMAIL_USER, PASS_USER).
+Optimization: Focused on Chromium for fast feedback loops.
+Artifacts: HTML reports stored for 30 days for debugging.
+Workflow: .github/workflows/playwright.yml
 
-- Repository - https://github.com/Spidey44/MN-Coding-Exercise---Automate-demo.simplcommerce-with-Playwright
+### 7. Project Structure
 
-- CI/CD Integration via YAML
+├── .github/workflows/       # CI/CD Pipeline configuration
+├── Coding Testwares/        # Test design docs and screenshots
+│   ├── Simplcommerce.xlsx   # Test case design & prioritization
+│   ├── CICD pipeline.jpg    # CI/CD execution screenshot
+│   ├── Report - logs and screenshot.jpg
+│   └── Test Run.jpg         # Sample test execution
+├── tests/                   # Test scripts (.spec.js)
+├── playwright.config.js     # Global Playwright settings
+├── .env.example             # Template for environment variables
+└── README.md                # Project documentation
 
-- GitHub Actions used as CI tool to orchestrate the entire automation process.
-
-- Automated triggers on push / PR to ensure every code change is validated immediately.
-
-- Standardized Ubuntu environment used to run tests consistently every time.
-
-- Automated dependency setup including Node.js, npm packages, and browser binaries.
-
-- Secure credential management using GitHub Secrets for sensitive login data.
-
-- Headless execution on Chromium to maximize speed and reduce resource usage.
-
-- Artifact retention policy to automatically upload and store HTML test reports.
-
-(Workflow under .github/workflows/playwright.yml.)
-
-commends: 
-# 1. add file or changes
-git add .
-
-# 2. Crate Validation MEssage
-git commit -m "Change X, y Z made"
-
-# 3. Push to GitHub
-git push origin main
-
-## Notes about Demo Environment
+### 8. Notes about Demo Environment
 
 Since this test suite runs on a public demo site:
 
-- Product catalog may change
-
-- Search results may differ by browser and timing
-
-- Some actions may behave inconsistently depending on session/cookies
-
-- Cart state may persist between actions
-
-Therefore, tests were designed to validate stable signals instead of strict assumptions.
-
-
-## Automation Best Practices as per Playwright's recommendations: 
-
-- Prefer stable selectors (getByRole, locator with meaningful attributes) 
-
-- Assert visibility before interacting with elements 
-
-- Use cross-browser validation 
-
-- Avoid brittle absolute selectors whenever possible Validate real UI signals 
-
-- Use polling (expect.poll) when UI updates asynchronously
-
-## 👩‍💻 Author
-**Mamadou N'diaye*
-📅 February 1, 2026
-
+- P-roduct catalog may change.
+- Search results may differ by browser and timing.
+- Some actions may behave inconsistently depending on session/cookies.
+- Cart state may persist between actions.
+- Therefore, tests were designed to validate stable signals instead of strict assumptions.
