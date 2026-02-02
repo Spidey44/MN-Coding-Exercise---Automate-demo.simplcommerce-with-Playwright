@@ -40,14 +40,7 @@ export default defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
-      testMatch: [
-        // ✅ PASSING TESTS - Keep these
-        '**/auth-*.spec.js',
-        '**/navigation-*.spec.js',
-        '**/product-search*.spec.js',
-        '**/product-filter*.spec.js',
-        '**/product-sort*.spec.js',
-      ],
+      
     },
 
     // {
