@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test("[Cart] Adding a product to the cart", async ({ page }) => {
+test("[TC_CART_001] Adding a product to the cart", async ({ page }) => {
   await page.goto("/dell-xps-15-9550");
 
   const laptopTitle = page.getByRole("heading", { name: /Dell XPS 15 9550/i });

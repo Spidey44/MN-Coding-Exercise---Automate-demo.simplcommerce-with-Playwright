@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test("[Product] Proceeding to checkout with valid details", async ({ page }) => {
+test("[TC_CHECK_001] Proceeding to checkout with valid details", async ({ page }) => {
   await page.goto("/dell-xps-15-9550");
 
   const laptopTitle = page.getByRole("heading", { name: /Dell XPS 15 9550/i });

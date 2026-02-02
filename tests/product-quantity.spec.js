@@ -24,7 +24,7 @@ const cases = [
 ];
 
 for (const c of cases) {
-  test(`[Product] Updating product quantity - ${c.name}`, async ({ page }) => {
+  test(`[TC_CART_003] Updating product quantity - ${c.name}`, async ({ page }) => {
     await page.goto(c.url);
 
     await expect(page.locator("h1").getByText(c.name, { exact: true })).toBeVisible();

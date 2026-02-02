@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test("[Product] Attempting checkout with missing address", async ({ page }) => {
+test("[TC_CHECK_002] Attempting checkout with missing address", async ({ page }) => {
   await page.goto("/dell-xps-15-9550");
 
   const laptopTitle = page.getByRole("heading", { name: /Dell XPS 15 9550/i });
@@ -38,7 +38,7 @@ test("[Product] Attempting checkout with missing address", async ({ page }) => {
   await expect(paymentBtn).toBeDisabled();
 });
 
-test("[Product] Attempting checkout with invalid payment", async ({ page }) => {
+test("[TC_CHECK_010] Attempting checkout with invalid payment", async ({ page }) => {
   await page.goto("/dell-xps-15-9550");
 
   const laptopTitle = page.getByRole("heading", { name: /Dell XPS 15 9550/i });

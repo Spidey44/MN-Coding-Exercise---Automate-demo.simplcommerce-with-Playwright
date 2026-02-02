@@ -1,4 +1,4 @@
- nopcommerce-test-automation-js 🧪🛒
+🛒CODING ASSIGNMENT
 
 End-to-end test automation suite for the **SimplCommerce Demo Store** using **Playwright (JavaScript)**.
 
@@ -11,7 +11,7 @@ This project contains a small set of smoke/regression tests focused on the main 
 
 ---
 
-## ✅ Tech Stack
+## Tech Stack
 
 - **Playwright**
 - **JavaScript (Node.js)**
@@ -19,20 +19,20 @@ This project contains a small set of smoke/regression tests focused on the main 
 
 ---
 
-## 📦 Requirements
+## Requirements
 
 - **Node.js 18+**
 - npm
 
 ---
 
-## 🚀 Installation
+## Installation
 
 Clone the repository and install dependencies:
 
 ```bash
-git clone https://github.com/Spidey44/nopcommerce-test-automation-js.git
-cd nopcommerce-test-automation-js
+git clone https://github.com/Spidey44/MN-Coding-Exercise---Automate-demo.simplcommerce-with-Playwright.git
+cd MN-Coding-Exercise---Automate-demo.simplcommerce-with-Playwright
 npm install
 ```
 
@@ -45,7 +45,7 @@ npx playwright install
 
 ---
 
-## 🔐 Environment Variables (.env)
+## Environment Variables (.env)
 Create a .env file in the root of the project:
 ```bash
 BASE_URL=https://example.com
@@ -64,7 +64,7 @@ These credentials are used for login before checkout tests.
 
 ---
 
-## ▶️ Running Tests
+## Running Tests
 
 Run all tests:
 ```bash
@@ -88,7 +88,7 @@ npx playwright test -g "Adding a product to the cart"
 
 ---
 
-## 📄 Test Report
+## Test Report
 After execution, open the HTML report:
 
 ```bash
@@ -99,15 +99,13 @@ npx playwright show-report
 The following tests are included as required examples:
 
 ### ✅ Cart
-- Adding a product to the cart
-- Removing a product from the cart
-
-### ✅ Product
-- Updating product quantity
+- TC_CART_001 - Adding a product to the cart
+- TC_CART_002 - Removing a product from the cart
+- TC_CART_003 - Updating product quantity
 
 ### ✅ Checkout
-- Proceeding to checkout with valid details
-- Attempting checkout with missing/invalid details (no address / invalid payment)
+- TC_CHECK_001 - Proceeding to checkout with valid details
+- TC_CHECK_010 - Attempting checkout with missing/invalid details (no address / invalid payment)
 
 ## 🔁 Data-Driven Tests
 Some tests are implemented using a simple data-driven approach.
@@ -117,6 +115,7 @@ Example structure:
 const cases = [
   { name: "iPhone 6s 16GB", url: "/iphone-6s-16gb", addClicks: 2 },
   { name: "Dell XPS 15 9550", url: "/dell-xps-15-9550", addClicks: 1 },
+  ...
 ];
 
 for (const c of cases) {
@@ -127,7 +126,7 @@ for (const c of cases) {
 }
 ```
 
-**✅ This makes it easy to scale test coverage by simply adding new products/cases without duplicating logic.**
+** This makes it easy to scale test coverage by simply adding new products/cases without duplicating logic.**
 
 ## 🎯 Selector Strategy
 The test suite prioritizes readable selectors such as:
@@ -140,7 +139,7 @@ const addCartBtn = page.getByRole("button", { name: "Add to cart" });
 await addCartBtn.click();
 ```
 
-## 🧩 Project Structure
+## Project Structure
 ```bash
 tests/
   smoke.spec.js
@@ -151,19 +150,64 @@ tests/
   product-quantity.spec.js
 ```
 
-## 🤖 CI/CD (GitHub Actions Ready)
-This project can be easily integrated into CI/CD using GitHub Actions.
-A typical pipeline will:
+## CI/CD Integration via YAML
 
-- Install dependencies
+- Repository - https://github.com/Spidey44/MN-Coding-Exercise---Automate-demo.simplcommerce-with-Playwright
 
-- Install Playwright browsers
+- CI/CD Integration via YAML
 
-- Run tests
+- GitHub Actions used as CI tool to orchestrate the entire automation process.
 
-- Upload report artifacts
+- Automated triggers on push / PR to ensure every code change is validated immediately.
 
-(Workflow file can be added under .github/workflows/playwright.yml.)
+- Standardized Ubuntu environment used to run tests consistently every time.
+
+- Automated dependency setup including Node.js, npm packages, and browser binaries.
+
+- Secure credential management using GitHub Secrets for sensitive login data.
+
+- Headless execution on Chromium to maximize speed and reduce resource usage.
+
+- Artifact retention policy to automatically upload and store HTML test reports.
+
+(Workflow under .github/workflows/playwright.yml.)
+
+commends: 
+# 1. add file or changes
+git add .
+
+# 2. Crate Validation MEssage
+git commit -m "Change X, y Z made"
+
+# 3. Push to GitHub
+git push origin main
+
+## Notes about Demo Environment
+
+Since this test suite runs on a public demo site:
+
+- Product catalog may change
+
+- Search results may differ by browser and timing
+
+- Some actions may behave inconsistently depending on session/cookies
+
+- Cart state may persist between actions
+
+Therefore, tests were designed to validate stable signals instead of strict assumptions.
+
+
+## Automation Best Practices as per Playwright's recommendations: 
+
+- Prefer stable selectors (getByRole, locator with meaningful attributes) 
+
+- Assert visibility before interacting with elements 
+
+- Use cross-browser validation 
+
+- Avoid brittle absolute selectors whenever possible Validate real UI signals 
+
+- Use polling (expect.poll) when UI updates asynchronously
 
 ## 👩‍💻 Author
 **Mamadou N'diaye*
