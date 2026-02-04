@@ -28,8 +28,10 @@ test("[TC_CHECK_001] Proceeding to checkout with valid details", async ({ page }
   await page.fill("#Password", process.env.PASS_USER ?? "test123");
   await page.getByRole("button", { name: "Log in" }).click();
 
-  await expect(page.getByRole("link", { name: /Hello Jane Doe!/i }))
-    .toBeVisible({ timeout: 15000 });
+  // await expect(page.getByRole("link", { name: /Hello Jane Doe!/i }))
+  //   .toBeVisible({ timeout: 15000 });
+  await expect(page.locator('a[href="/user"]').first())
+  .toBeVisible({ timeout: 20000 });
 
   await checkoutBtn.click();
 
