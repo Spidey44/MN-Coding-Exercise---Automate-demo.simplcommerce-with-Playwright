@@ -6,21 +6,21 @@ const cases = [
     url: "/iphone-6s-16gb",
     addClicks: 2,
   },
-  {
-    name: "Dell XPS 15 9550",
-    url: "/dell-xps-15-9550",
-    addClicks: 1,
-  },
-  {
-    name: "Samsung Galaxy A5",
-    url: "/samsung-galaxy-a5",
-    addClicks: 3,
-  },
-  {
-    name: "iPad Pro Wi-Fi 4G 128GB",
-    url: "/ipad-pro-wi-fi-4g-128gb",
-    addClicks: 4,
-  },
+  // {
+  //   name: "Dell XPS 15 9550",
+  //   url: "/dell-xps-15-9550",
+  //   addClicks: 1,
+  // },
+  // {
+  //   name: "Samsung Galaxy A5",
+  //   url: "/samsung-galaxy-a5",
+  //   addClicks: 3,
+  // },
+  // {
+  //   name: "iPad Pro Wi-Fi 4G 128GB",
+  //   url: "/ipad-pro-wi-fi-4g-128gb",
+  //   addClicks: 4,
+  // },
 ];
 
 for (const c of cases) {
