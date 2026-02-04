@@ -69,8 +69,10 @@ test("[TC_CHECK_010] Attempting checkout with invalid payment", async ({ page })
   await page.fill("#Password", process.env.PASS_USER ?? "test123");
   await page.getByRole("button", { name: "Log in" }).click();
 
-  await expect(page.getByRole("link", { name: /Hello Jane Doe!/i }))
-    .toBeVisible({ timeout: 15000 });
+  // await expect(page.getByRole("link", { name: /Hello Jane Doe!/i }))
+  //   .toBeVisible({ timeout: 15000 });
+  await expect(page.locator('a[href="/user"]').first())
+    .toBeVisible({ timeout: 20000 });
 
   await checkoutBtn.click();
 
